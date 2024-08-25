@@ -17,7 +17,7 @@ function LocationSearch({ onLocationClick }: LocationSearchProps) {
     const results = await fetchLocations(term);
     setLocations(results);
   };
-  
+
   return (
     <div className="search">
       <h2 className="heading">Search Locations</h2>
@@ -31,16 +31,18 @@ function LocationSearch({ onLocationClick }: LocationSearchProps) {
       </form>
       <div className="search__results">
         <h2 className="heading">Results</h2>
-        {locations.map((item) => {
-          return (
-            <LocationCard
-              key={item.id}
-              name={item.name}
-              id={item.id}
-              onSelect={ () => onLocationClick(item)}
-            />
-          );
-        })}
+        <div className="search__results-container">
+          {locations.map((item) => {
+            return (
+              <LocationCard
+                key={item.id}
+                name={item.name}
+                id={item.id}
+                onSelect={() => onLocationClick(item)}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
