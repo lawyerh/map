@@ -8,7 +8,9 @@ function App() {
 
   return (
     <div className="App">
-      <LocationSearch onLocationClick={(l) => setLocation(l)} />
+      <LocationSearch onLocationClick={(l) => {
+        setLocation(l);
+      }} />
       <Map location={location}/>
     </div>
   );
