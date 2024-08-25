@@ -3,17 +3,24 @@ import LocationCard from "./LocationCard";
 import type { Location } from "../api/location";
 import { fetchLocations } from "../api/fetchLocations";
 
+// Defining the props this component expects
 interface LocationSearchProps {
+    // Expects one prop
+    // Function that needs one argument of type Location and returns nothing
   onLocationClick: (location: Location) => void;
 }
 
+// Component props are being set to the interface defined above
 function LocationSearch({ onLocationClick }: LocationSearchProps) {
+    // locations state needs to be an array of Location type objects
   const [locations, setLocations] = useState<Location[]>([]);
+  // term should be a string. Not necesarry to demand string because of type inference.
   const [term, setTerm] = useState<string>("");
 
+  // Event object defined as react form element type
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //Search API
+    // Calls API and receives Location[] / Array of Location objects
     const results = await fetchLocations(term);
     setLocations(results);
   };
